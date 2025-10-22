@@ -26,10 +26,14 @@
 # ############
 
 import clr
+import os
+dir_path = os.path.dirname(__file__)
 
-clr.AddReference("../lib/Waveplus.DaqSys") # type: ignore
-clr.AddReference("../lib/Waveplus.DaqSysInterface") # type: ignore
-clr.AddReference("../lib/CyUSB") # type: ignore
+clr.AddReference(os.path.join(dir_path, 'lib', 'Waveplus.DaqSys')) # type: ignore
+clr.AddReference(os.path.join(dir_path, 'lib', 'Waveplus.DaqSysInterface')) # type: ignore
+clr.AddReference(os.path.join(dir_path, 'lib', 'CyUSB')) # type: ignore
+
+from .constants import AccelerometerFullScaleEnum, GyroscopeFullScaleEnum, SensorTypeEnum
 
 from Waveplus.DaqSys import * # type: ignore
 from Waveplus.DaqSysInterface import * # type: ignore
@@ -38,23 +42,21 @@ from Waveplus.DaqSys.Exceptions import * # type: ignore
 from CyUSB import * # type: ignore
 
 
-class CometaVersion(Version): # type: ignore
-  def get_major(self) -> int:
-    return self.get_Major()
-  
-  def get_minor(self) -> int:
-    return self.get_Minor()
+class CometaSensorConfiguration(SensorConfiguration): # type: ignore
+  def get_sensor_type(self) -> SensorTypeEnum:
+    return self.get_SensorType()
 
+  def set_sensor_type(self, sensor_type: SensorTypeEnum) -> None:
+    self.set_SensorType(sensor_type)
 
-class CometaExtVersion(ExtVersion): # type: ignore
-  def get_major(self) -> int:
-    return self.get_Major()
-    
-  def get_minor(self) -> int:
-    return self.get_Minor()
-    
-  def get_build(self) -> int:
-    return self.get_Build()
-    
-  def get_revision(self) -> int:
-    return self.get_Revision()
+  def get_accelerometer_full_scale(self) -> AccelerometerFullScaleEnum:
+    return self.get_AccelerometerFullScale()
+
+  def set_accelerometer_full_scale(self, full_scale: AccelerometerFullScaleEnum) -> None:
+    self.set_AccelerometerFullScale(full_scale)
+
+  def get_gyroscope_full_scale(self) -> GyroscopeFullScaleEnum:
+    return self.get_GyroscopeFullScale()
+
+  def set_gyroscope_full_scale(self, full_scale: GyroscopeFullScaleEnum) -> None:
+    self.set_GyroscopeFullScale(full_scale)

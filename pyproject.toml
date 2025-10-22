@@ -10,7 +10,7 @@ authors = [
   { name="Maxim Yudayev", email="maxim.yudayev@gmail.com" },
   { name="e-Media Research Lab @ KU Leuven" },
 ]
-description = "A pythonic wrapper library for Cometa sEMG Waveplus and WaveX devices"
+description = "A pythonic wrapper library for Cometa sEMG Waveplus devices"
 keywords = ["wearables", "sensors", "surface electromyography", "cometa", "streaming", "sensing", "physiology"]
 readme = { file = "README.md", content-type = "text/markdown" }
 license = "MIT"
@@ -34,10 +34,10 @@ dependencies = [
 where = ["src"]
 
 [tool.setuptools.package-data]
-pyemg_cometa = ["*.dll"]
+pyemg_cometa = ["lib/*.dll"]
 
 [tool.setuptools]
-platforms = ["win32", "win64", "cygwin", "msys"]
+platforms = ["win32", "win-amd64"]
 
 [project.urls]
 Repository = "https://github.com/maximyudayev/pyemg-cometa.git"

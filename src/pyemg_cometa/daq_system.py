@@ -27,6 +27,12 @@
 
 from typing import Any, Callable, Iterable
 import clr
+import os
+dir_path = os.path.dirname(__file__)
+
+clr.AddReference(os.path.join(dir_path, 'lib', 'Waveplus.DaqSys')) # type: ignore
+clr.AddReference(os.path.join(dir_path, 'lib', 'Waveplus.DaqSysInterface')) # type: ignore
+clr.AddReference(os.path.join(dir_path, 'lib', 'CyUSB')) # type: ignore
 
 from .constants import DataAvailableEventPeriodEnum, RFChannelEnum
 from .constants import DeviceErrorEnum, DeviceStateEnum
@@ -36,10 +42,6 @@ from .device_dependent_functionalities import CometaDeviceDependentFunctionaliti
 from .event_args import CometaDataAvailableEventArgs, CometaDeviceStateChangedEventArgs, CometaSensorMemoryDataAvailableEventArgs
 from .sensor_configuration import CometaSensorConfiguration
 from .version import CometaExtVersion, CometaVersion
-
-clr.AddReference("../lib/Waveplus.DaqSys") # type: ignore
-clr.AddReference("../lib/Waveplus.DaqSysInterface") # type: ignore
-clr.AddReference("../lib/CyUSB") # type: ignore
 
 from Waveplus.DaqSys import * # type: ignore
 from Waveplus.DaqSysInterface import * # type: ignore

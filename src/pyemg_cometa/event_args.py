@@ -27,12 +27,14 @@
 
 from typing import Iterable
 import clr
+import os
+dir_path = os.path.dirname(__file__)
+
+clr.AddReference(os.path.join(dir_path, 'lib', 'Waveplus.DaqSys')) # type: ignore
+clr.AddReference(os.path.join(dir_path, 'lib', 'Waveplus.DaqSysInterface')) # type: ignore
+clr.AddReference(os.path.join(dir_path, 'lib', 'CyUSB')) # type: ignore
 
 from .constants import DeviceErrorEnum, DeviceStateEnum, SensorStateEnum
-
-clr.AddReference("../lib/Waveplus.DaqSys") # type: ignore
-clr.AddReference("../lib/Waveplus.DaqSysInterface") # type: ignore
-clr.AddReference("../lib/CyUSB") # type: ignore
 
 from Waveplus.DaqSys import * # type: ignore
 from Waveplus.DaqSysInterface import * # type: ignore
