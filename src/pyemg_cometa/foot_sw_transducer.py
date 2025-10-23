@@ -25,6 +25,12 @@
 #
 # ############
 
+"""
+足底开关（Foot Switch, FSW）通道开关与阈值配置包装。
+
+提供对 A/1/5/T 四个部位的启用状态与阈值的读写封装。
+"""
+
 import clr
 import os
 dir_path = os.path.dirname(__file__)
@@ -40,53 +46,71 @@ from Waveplus.DaqSys.Exceptions import * # type: ignore
 from CyUSB import * # type: ignore
 
 
-class CometaFootSwTransducerEnabled(FootSwTransducerEnabled): # type: ignore
+class CometaFootSwTransducerEnabled(FootSwTransducerEnabled):  # type: ignore
+  """FSW 通道启用状态包装。"""
   def get_transducer_a(self) -> bool:
+    """读取 A 通道是否启用。"""
     return self.get_T_A()
 
   def set_transducer_a(self, is_enabled: bool) -> None:
+    """设置 A 通道启用状态。"""
     self.set_T_A(is_enabled)
 
   def get_transducer_1(self) -> bool:
+    """读取 1 通道是否启用。"""
     return self.get_T_1()
 
   def set_transducer_1(self, is_enabled: bool) -> None:
+    """设置 1 通道启用状态。"""
     self.set_T_1(is_enabled)
 
   def get_transducer_5(self) -> bool:
+    """读取 5 通道是否启用。"""
     return self.get_T_5()
 
   def set_transducer_5(self, is_enabled: bool) -> None:
+    """设置 5 通道启用状态。"""
     self.set_T_5(is_enabled)
 
   def get_transducer_t(self) -> bool:
+    """读取 T 通道是否启用。"""
     return self.get_T_T()
 
   def set_transducer_t(self, is_enabled: bool) -> None:
+    """设置 T 通道启用状态。"""
     self.set_T_T(is_enabled)
 
 
 class CometaFootSwTransducerThreshold(FootSwTransducerThreshold):  # type: ignore
+  """FSW 通道阈值包装。"""
   def get_transducer_a(self) -> float:
+    """读取 A 通道阈值。"""
     return self.get_T_A()
 
   def set_transducer_a(self, threshold: float) -> None:
+    """设置 A 通道阈值。"""
     self.set_T_A(threshold)
 
   def get_transducer_1(self) -> float:
+    """读取 1 通道阈值。"""
     return self.get_T_1()
 
   def set_transducer_1(self, threshold: float) -> None:
+    """设置 1 通道阈值。"""
     self.set_T_1(threshold)
 
   def get_transducer_5(self) -> float:
+    """读取 5 通道阈值。"""
     return self.get_T_5()
 
   def set_transducer_5(self, threshold: float) -> None:
+    """设置 5 通道阈值。"""
     self.set_T_5(threshold)
 
   def get_transducer_t(self) -> float:
+    """读取 T 通道阈值。"""
     return self.get_T_T()
 
   def set_transducer_t(self, threshold: float) -> None:
+    """设置 T 通道阈值。"""
     self.set_T_T(threshold)

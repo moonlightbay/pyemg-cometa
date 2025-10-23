@@ -25,6 +25,12 @@
 #
 # ############
 
+"""
+传感器配置包装（SensorConfiguration）。
+
+用于设置单个传感器的类型、加速度计/陀螺仪量程等。
+"""
+
 import clr
 import os
 dir_path = os.path.dirname(__file__)
@@ -42,21 +48,28 @@ from Waveplus.DaqSys.Exceptions import * # type: ignore
 from CyUSB import * # type: ignore
 
 
-class CometaSensorConfiguration(SensorConfiguration): # type: ignore
+class CometaSensorConfiguration(SensorConfiguration):  # type: ignore
+  """单传感器配置的 Python 包装。"""
   def get_sensor_type(self) -> SensorTypeEnum:
+    """读取传感器类型（EMG/IMU/FSW/模拟）。"""
     return self.get_SensorType()
 
   def set_sensor_type(self, sensor_type: SensorTypeEnum) -> None:
+    """设置传感器类型。"""
     self.set_SensorType(sensor_type)
 
   def get_accelerometer_full_scale(self) -> AccelerometerFullScaleEnum:
+    """读取加速度计量程。"""
     return self.get_AccelerometerFullScale()
 
   def set_accelerometer_full_scale(self, full_scale: AccelerometerFullScaleEnum) -> None:
+    """设置加速度计量程。"""
     self.set_AccelerometerFullScale(full_scale)
 
   def get_gyroscope_full_scale(self) -> GyroscopeFullScaleEnum:
+    """读取陀螺仪量程。"""
     return self.get_GyroscopeFullScale()
 
   def set_gyroscope_full_scale(self, full_scale: GyroscopeFullScaleEnum) -> None:
+    """设置陀螺仪量程。"""
     self.set_GyroscopeFullScale(full_scale)

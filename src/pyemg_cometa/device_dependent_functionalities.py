@@ -25,6 +25,13 @@
 #
 # ############
 
+"""
+设备依赖功能可用性查询。
+
+某些功能仅在特定设备/固件或工作状态下可用，本模块对可用性查询
+接口进行薄封装。
+"""
+
 import clr
 import os
 dir_path = os.path.dirname(__file__)
@@ -41,9 +48,12 @@ from CyUSB import * # type: ignore
 
 
 # NOTE: properties accessible when DAQ is in 'Idle', 'Capturing' or 'ReadingSensorMemory' states. 
-class CometaDeviceDependentFunctionalities(DeviceDependentFunctionalities): # type: ignore
+class CometaDeviceDependentFunctionalities(DeviceDependentFunctionalities):  # type: ignore
+  """设备依赖功能集合包装。"""
   def is_rf_freq_setting_supported(self) -> bool:
+    """是否支持设置 RF 频率/信道。"""
     return self.get_RfFrequencySettingSupported()
 
   def is_selective_mem_reading_supported(self) -> bool:
+    """是否支持选择性读取传感器内存（按试次）。"""
     return self.get_SelectiveMemoryReadingSupported()

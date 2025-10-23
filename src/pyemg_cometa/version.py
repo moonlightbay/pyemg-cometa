@@ -25,6 +25,12 @@
 #
 # ############
 
+"""
+设备/固件/软件版本信息包装。
+
+对 .NET `Version` 与 `ExtVersion` 提供 Python 化的访问方法。
+"""
+
 import clr
 import os
 dir_path = os.path.dirname(__file__)
@@ -40,23 +46,31 @@ from Waveplus.DaqSys.Exceptions import * # type: ignore
 from CyUSB import * # type: ignore
 
 
-class CometaVersion(Version): # type: ignore
+class CometaVersion(Version):  # type: ignore
+  """标准版本（主/次）。"""
   def get_major(self) -> int:
+    """主版本号。"""
     return self.get_Major()
   
   def get_minor(self) -> int:
+    """次版本号。"""
     return self.get_Minor()
 
 
-class CometaExtVersion(ExtVersion): # type: ignore
+class CometaExtVersion(ExtVersion):  # type: ignore
+  """扩展版本（主/次/构建/修订）。"""
   def get_major(self) -> int:
+    """主版本号。"""
     return self.get_Major()
     
   def get_minor(self) -> int:
+    """次版本号。"""
     return self.get_Minor()
     
   def get_build(self) -> int:
+    """构建号。"""
     return self.get_Build()
     
   def get_revision(self) -> int:
+    """修订号。"""
     return self.get_Revision()

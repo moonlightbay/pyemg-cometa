@@ -25,6 +25,15 @@
 #
 # ############
 
+"""
+Cometa Waveplus SDK 常量与枚举映射。
+
+本模块将 .NET SDK 中的枚举/常量统一暴露为 Python 侧的类属性，
+方便在类型提示与 IDE 补全下书写更安全、可读的代码。
+
+注意：这些枚举值直接映射到 .NET 对应值，不改变语义。
+"""
+
 import clr
 import os
 dir_path = os.path.dirname(__file__)
@@ -42,6 +51,7 @@ from CyUSB import * # type: ignore
 
 
 class DeviceStateEnum:
+  """设备状态枚举（映射 .NET `DeviceState`）。"""
   NOT_CONNECTED = DeviceState.NotConnected # type: ignore # No USB device is connected to the bus
   INITIALIZING = DeviceState.Initializing # type: ignore # WavePlus is initializing
   COMMUNICATION_ERROR = DeviceState.CommunicationError # type: ignore # No communication with WavePlus device available
@@ -51,6 +61,7 @@ class DeviceStateEnum:
 
 
 class DeviceErrorEnum:
+  """设备错误码（映射 .NET `DeviceError` 与异常枚举）。"""
   SUCCESS = DeviceError.Success # type: ignore
   DEVICE_NOTCONNECTED = DeviceError.DeviceNotConnected # type: ignore
   SENDING_COMMAND = DeviceError.SendingCommand # type: ignore
@@ -145,6 +156,7 @@ class DaqDeviceExceptionTypeEnum:
 
 
 class RFChannelEnum:
+  """RF 信道枚举（映射 .NET `RFChannel`）。"""
   RF_CHANNEL_0 = RFChannel.RFChannel_0 # type: ignore
   RF_CHANNEL_1 = RFChannel.RFChannel_1 # type: ignore
   RF_CHANNEL_2 = RFChannel.RFChannel_2 # type: ignore
@@ -156,11 +168,13 @@ class RFChannelEnum:
 
 
 class SamplingRateEnum:
+  """采样率枚举（当前仅提供 2kHz）。"""
   HZ_2000 = SamplingRate.Hz_2000 # type: ignore # 2 kHz
 
 
 # NOTE: Raw Gyro and Mag only available during the `RAW_DATA` scheme.
 class ImuAcqTypeEnum:
+  """IMU 采集模式（映射 .NET `ImuAcqType`）。"""
   RAW_DATA = ImuAcqType.RawData # type: ignore 	# Raw IMU data at 284 Hz
   FUSED_9DOF_142HZ = ImuAcqType.Fused9xData_142Hz # type: ignore 	# Quaternion from 9-DOF at 142 Hz 
   FUSED_6DOF_284HZ = ImuAcqType.Fused6xData_284Hz # type: ignore 	# Quaternion from 6-DOF at 284 Hz
@@ -170,6 +184,7 @@ class ImuAcqTypeEnum:
 
 
 class DataAvailableEventPeriodEnum:
+  """数据事件回调周期（毫秒）。"""
   MS_100 = DataAvailableEventPeriod.ms_100 # type: ignore
   MS_50 = DataAvailableEventPeriod.ms_50 # type: ignore
   MS_25 = DataAvailableEventPeriod.ms_25 # type: ignore
@@ -177,6 +192,7 @@ class DataAvailableEventPeriodEnum:
 
 
 class SensorTypeEnum:
+  """传感器类型。"""
   EMG_SENSOR = SensorType.EMG_SENSOR # type: ignore
   INERTIAL_SENSOR = SensorType.INERTIAL_SENSOR # type: ignore
   ANALOG_GP_SENSOR = SensorType.ANALOG_GP_SENSOR # type: ignore
@@ -184,6 +200,7 @@ class SensorTypeEnum:
 
 
 class SensorStateEnum:
+  """传感器电量状态等（按位/数值编码）。"""
   BAT_0 = 0x0000
   BAT_33 = 0x0001
   BAT_66 = 0x0002
@@ -192,6 +209,7 @@ class SensorStateEnum:
 
 # Gravitational field.
 class AccelerometerFullScaleEnum:
+  """加速度计量程（g）。"""
   G_2 = AccelerometerFullScale.g_2 # type: ignore
   G_4 = AccelerometerFullScale.g_4 # type: ignore
   G_8 = AccelerometerFullScale.g_8 # type: ignore
@@ -200,6 +218,7 @@ class AccelerometerFullScaleEnum:
 
 # Degree per second.
 class GyroscopeFullScaleEnum:
+  """陀螺仪量程（度/秒）。"""
   DPS_250 = GyroscopeFullScale.dps_250 # type: ignore
   DPS_500 = GyroscopeFullScale.dps_500 # type: ignore
   DPS_1000 = GyroscopeFullScale.dps_1000 # type: ignore
@@ -207,12 +226,14 @@ class GyroscopeFullScaleEnum:
 
 
 class FootSwProtocolEnum:
+  """足底开关（FSW）协议模式。"""
   FULL_FOOT = FootSwProtocol.FullFoot # type: ignore
   HALF_FOOT = FootSwProtocol.HalfFoot # type: ignore
   QUARTER_FOOT = FootSwProtocol.QuarterFoot # type: ignore
 
 
 class SensorCheckReportEnum:
+  """电极阻抗检测报告。"""
   FAILED = SensorCheckReport.Failed # type: ignore
   PASSED = SensorCheckReport.Passed # type: ignore
   NOT_EXECUTED = SensorCheckReport.NotExecuted # type: ignore
